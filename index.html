@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="km">
+<head>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b0f17">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photobooth Simple</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">📸</div>
+      <div>
+        <div class="title">Photobooth</div>
+        <div class="subtitle">HTML / CSS / JS (Single + Photo Strip + Filters)</div>
+      </div>
+    </div>
+    <button id="btnFullscreen" class="btn btn-ghost">Full Screen</button>
+  </header>
+
+  <main class="container">
+    <!-- Left: Camera -->
+    <section class="panel">
+      <h2>កាមេរ៉ា</h2>
+
+      <div class="videoWrap">
+        <video id="video" playsinline autoplay muted></video>
+        <div id="countdown" class="countdown hidden">3</div>
+      </div>
+
+      <div class="row">
+        <button id="btnStart" class="btn btn-primary">Start Camera</button>
+        <button id="btnStop" class="btn btn-secondary">Stop</button>
+        <button id="btnSwitchCamera" class="btn">Switch Camera</button>
+      </div>
+
+      <div class="row">
+        <label class="field">
+          Mode
+          <select id="mode">
+            <option value="single">Single Shot (1)</option>
+            <option value="strip">Photo Strip (3)</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Output Size
+          <select id="outSize">
+            <option value="None">None</option>
+            <option value="1080x1080">1080 x 1080</option>
+            <option value="1920x1080">1920 x 1080</option>
+            <option value="1080x1350">1080 x 1350</option>
+            <option value="500x734">500 x 734</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="field">
+          Countdown
+          <select id="cdSec">
+            <option value="None">None</option>
+            <option value="3">3s</option>
+            <option value="5">5s</option>
+            <option value="10">10s</option>
+          </select>
+        </label>
+
+        <label class="toggle">
+          <input id="mirror" type="checkbox" checked />
+          <span>Mirror</span>
+        </label>
+      </div>
+
+      <div class="row">
+        <button id="btnCapture" class="btn btn-primary">Capture</button>
+        <button id="btnReset" class="btn btn-ghost">Reset Shots</button>
+      </div>
+
+      <p class="hint">
+        Tip: បើ camera មិនបើក (file://), សូមរត់ដោយ Live Server (VS Code) ឬ python http server។
+      </p>
+    </section>
+
+    <!-- Right: Frames + Preview -->
+    <section class="panel">
+      <h2>Frame + Preview</h2>
+
+      <div class="frameList" id="frameList"></div>
+
+      <div class="row">
+        <label class="field">
+          Filter
+          <select id="filter">
+            <option value="none">None (ធម្មតា)</option>
+            <option value="bw">B&W (ស ខ្មៅ)</option>
+            <option value="sepia">Sepia (Vintage)</option>
+            <option value="kodak">Kodak Film (Grain + Vignette)</option>
+            <option value="dream">Dreamy Glow (Portal)</option>
+          </select>
+        </label>
+
+        <label class="field">
+          Strength
+          <input id="strength" type="range" min="0" max="100" value="70" />
+        </label>
+      </div>
+
+      <div class="canvasWrap">
+        <canvas id="canvas" width="1080" height="1080"></canvas>
+      </div>
+
+      <div class="row">
+        <button id="btnShare" class="btn btn-ghost">Share</button>
+        <button id="btnDownloadPng" class="btn btn-primary">Download PNG</button>
+        <button id="btnDownloadJpg" class="btn btn-secondary">Download JPG</button>
+      </div>
+
+      <div class="note">
+        <strong>Frame PNG</strong> ត្រូវមាន background transparent (ស៊ុម) ដាក់ក្នុង <code>assets/frames/</code>។
+        <br/>*Frame ក្នុង project នេះជាគំរូ (placeholder) អ្នកអាចជំនួសដោយ frame របស់អ្នក។
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Simple Photobooth • Offline-friendly • No backend
+  </footer>
+
+  <script src="assets/js/frames.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js");
+  }
+</script>
+</body>
+</html>

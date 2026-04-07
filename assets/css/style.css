@@ -1,0 +1,217 @@
+:root{
+  --bg:#0b0f17;
+  --panel:#121a2a;
+  --muted:#95a3b8;
+  --text:#e7eefc;
+  --border: rgba(255,255,255,0.08);
+  --primary:#4da3ff;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, #070a10, #0b0f17);
+  color: var(--text);
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  background: rgba(10,14,22,0.7);
+}
+
+.brand{ display:flex; gap:12px; align-items:center; }
+.logo{ font-size:28px; }
+.title{ font-weight:800; letter-spacing:0.2px; }
+.subtitle{ color:var(--muted); font-size:12px; margin-top:2px; }
+
+.container{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:16px;
+  padding:16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.panel{
+  background: rgba(18,26,42,0.75);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+h2{ margin: 4px 0 12px; font-size: 16px; }
+
+.videoWrap{
+  position: relative;
+  border-radius: 14px;
+  overflow:hidden;
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+video{
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transform-origin: center;
+}
+
+.countdown{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 84px;
+  font-weight: 900;
+  background: rgba(0,0,0,0.35);
+}
+
+.hidden{ display:none; }
+
+.row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top: 10px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size: 12px;
+  color: var(--muted);
+  min-width: 180px;
+}
+
+select{
+  padding:10px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.25);
+  color: var(--text);
+}
+
+input[type="range"]{
+  width: 180px;
+}
+
+.toggle{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.25);
+  color: var(--text);
+  user-select:none;
+}
+
+.btn{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.2);
+  color: var(--text);
+  cursor:pointer;
+  font-weight:700;
+}
+
+.btn:hover{ filter: brightness(1.05); }
+.btn:active{ transform: translateY(1px); }
+
+.btn-primary{
+  background: rgba(77,163,255,0.18);
+  border-color: rgba(77,163,255,0.35);
+}
+
+.btn-secondary{
+  background: rgba(255,255,255,0.08);
+}
+
+.btn-ghost{
+  background: transparent;
+}
+
+.hint{
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.frameList{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:10px;
+  margin-bottom: 12px;
+}
+
+.frameItem{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow:hidden;
+  cursor:pointer;
+  background: rgba(0,0,0,0.25);
+  padding: 6px;
+}
+
+.frameItem img{
+  width:100%;
+  display:block;
+  border-radius: 10px;
+}
+
+.frameItem.active{
+  outline: 2px solid rgba(77,163,255,0.7);
+}
+
+.canvasWrap{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow:hidden;
+  background: #070a10;
+}
+
+canvas{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.note{
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.footer{
+  padding: 18px;
+  color: var(--muted);
+  text-align:center;
+  font-size: 12px;
+}
+
+@media (max-width: 900px){
+  .container{ grid-template-columns: 1fr; }
+}
+html, body { height: 100%; overflow: hidden; }
+body { touch-action: manipulation; }
+.topbar { padding-top: calc(14px + env(safe-area-inset-top)); }
+.footer { padding-bottom: calc(18px + env(safe-area-inset-bottom)); }
+video { width: 100%; height: auto; }
+.btn { min-height: 44px; } /* touch friendly */
